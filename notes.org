@@ -1,0 +1,14 @@
+* Torque calculations
+
+- Torque determines rate of change of angular momentum
+- Angular momentum is angular velocity times moment of inertia
+- Moment of inertia of a thin rectangular plate of width w, height h
+  and mass m is (-> m (* (+ (square h) (square w))) (/ 12))
+- MacBook Pro is 6.8 pounds, 15.4 x 10.4 inches
+  - That's 0.264x0.391 m, 3.08kg
+  - So moment of intertia is 0.0571280966667 kg-m^2
+- FOV of the iSight is something like 120 degrees
+- It would be awesome if the platform could rotate through 180 degrees
+  in one second.
+- WIP of calculations here: https://docs.google.com/spreadsheet/ccc?key=0AiKbi2iTeSTDdHc4b19UNnc0V2ZRb3JPV0xBMjNjdHc#gid=0
+
