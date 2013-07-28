@@ -6,9 +6,24 @@
   and mass m is (-> m (* (+ (square h) (square w))) (/ 12))
 - MacBook Pro is 6.8 pounds, 15.4 x 10.4 inches
   - That's 0.264x0.391 m, 3.08kg
-  - So moment of intertia is 0.0571280966667 kg-m^2
+  - So moment of inertia is 0.0571280966667 kg m^2
 - FOV of the iSight is something like 120 degrees
 - It would be awesome if the platform could rotate through 180 degrees
   in one second.
-- WIP of calculations here: https://docs.google.com/spreadsheet/ccc?key=0AiKbi2iTeSTDdHc4b19UNnc0V2ZRb3JPV0xBMjNjdHc#gid=0
+- WIP of calculations here:
+  https://docs.google.com/spreadsheet/ccc?key=0AiKbi2iTeSTDdHc4b19UNnc0V2ZRb3JPV0xBMjNjdHc#gid=0
 
+* Connectivity
+** TODO How to link up swivelbot and controller given firewalls?
+- Some protocols mentioned:
+  - PiMP
+  - ICE
+  - UPnP
+- But maybe the thing to do is build it on top of something standard,
+  like IRC or XMPP.
+  - Would these be fast enough?
+  - If not, can still use IRC/XMPP/whatever for discovery and then
+    kick off a direct connection
+- So there are at least two problems:
+  - Discovery
+  - Remote Control
