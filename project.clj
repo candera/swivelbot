@@ -4,4 +4,8 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[com.pi4j/pi4j-core "0.0.5"]
-                 [org.clojure/clojure "1.5.1"]])
+                 [org.clojure/clojure "1.5.1"]]
+  :profiles
+  {:dev
+   {:dependencies [[org.clojure/tools.namespace "0.2.3"]]
+    :source-paths ["dev"]}})
