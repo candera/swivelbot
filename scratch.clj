@@ -185,3 +185,30 @@ pin
 (doseq [i (range 250 510 10)]
   (pca9685-set-led-cycle dev 12 i)
   (Thread/sleep 100))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Putting them together
+
+(import '[com.illposed.osc OSCPortIn OSCListener])
+
+(def dev (i2c-device 0x40))
+(pca9685-set-pwm-freq dev 60)
+
+(def receiver (OSCPortIn. 9000))
+
+(def listener (reify OSCListener
+                (acceptMessage [this time message]
+                  (let [val (-> message .getArguments (aget 0))
+                        servo (-> val (* 450) (+ 150) int)]
+                    (pca9685-set-led-cycle dev 12 servo))
+)))
+
+(.addListener receiver "/1/fader1" listener)
+(.addListener receiver "/accxyz" listener)
+
+(.startListening receiver)
+
+(def run-f (future (.run receiver)))
+
+(.stopListening receiver)
