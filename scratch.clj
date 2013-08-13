@@ -59,3 +59,26 @@ pin
     (.setPwm pwm 512))
 
 (.setPwm pwm 1024)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; OSC stuff
+
+(import '[com.illposed.osc OSCPortIn OSCListener])
+(def receiver (OSCPortIn. 9000))
+
+(def listener (reify OSCListener
+                (acceptMessage [this time message]
+                  (println "message received"
+                           time
+                           (.getAddress message)
+                           (map str (.getArguments message))))))
+
+(.addListener receiver "/1/fader1" listener)
+(.addListener receiver "/accxyz" listener)
+
+(.startListening receiver)
+
+(def run-f (future (.run receiver)))
+
+(.stopListening receiver)
