@@ -162,3 +162,26 @@ pin
 (def run-f (future (.run receiver)))
 
 (.stopListening receiver)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Java I2C
+
+(def dev (i2c-device 0x40))
+
+(pca9685-read-register dev 56)
+
+(pca9685-set-pwm-freq dev 50)
+
+(pca9685-set-led-cycle dev 12 500)
+
+(pca9685-set-pwm-freq dev 60)
+(dotimes [_ 20]
+  (pca9685-set-led-cycle dev 12 150)
+  (Thread/sleep 1000)
+  (pca9685-set-led-cycle dev 12 600)
+  (Thread/sleep 1000))
+
+(doseq [i (range 250 510 10)]
+  (pca9685-set-led-cycle dev 12 i)
+  (Thread/sleep 100))
